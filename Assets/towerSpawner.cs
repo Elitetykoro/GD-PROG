@@ -5,6 +5,7 @@ using UnityEngine;
 public class towerSpawner : MonoBehaviour
 {
     public GameObject Prefab;
+    public Camera cam;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,7 +17,8 @@ public class towerSpawner : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            Instantiate(Prefab, new Vector3(Random.Range(-10,10), Random.Range(-10, 10), Random.Range(-10, 10)),Quaternion.identity);
+
+            Instantiate(Prefab, Camera.main.ScreenToWorldPoint(Input.mousePosition), Quaternion.identity);
         }
     }
 }
