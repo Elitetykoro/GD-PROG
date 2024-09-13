@@ -6,43 +6,41 @@ public class EnemySpawner : MonoBehaviour
 {
     // Start is called before the first frame update
     public List<GameObject> enemyList;
-    public GameObject prefab;
-    private float time;
-
+    public GameObject enemy;
+    float time = 0;
     // Update is called once per frame
     private void Start()
     {
-        enemyList.Add(prefab);
     }
     void Update()
     {
-        time += Time.deltaTime;
-
-        if (prefab.CompareTag("Untagged"))
+        if (Input.GetKeyDown(KeyCode.Q)) clearFunc();
+        if (Input.GetKeyDown(KeyCode.W)) enemySpawnFunc();
+        for (int i = 0; i < GameObject.FindGameObjectsWithTag("enemy").Length; i++)
         {
-            enemyList.Add (prefab);
+            enemyList.Add(GameObject.FindGameObjectsWithTag("enemy")[i]);
+            GameObject.FindGameObjectsWithTag("enemy")[i].gameObject.tag = "isTagged";
         }
-        
+        time += Time.deltaTime;
         if (time > 3)
         {
-            Instantiate(prefab);
+            Instantiate(enemy, transform.position, Quaternion.identity);
             time = 0;
         }
-
-        if (Input.GetKeyUp(KeyCode.Q))
+    }
+    void enemySpawnFunc()
+    {
+        for (int i = 0;i < 100; i++)
         {
-            Destroy(prefab);
+            Instantiate(enemy,transform.position,Quaternion.identity);
         }
-        if (Input.GetKeyUp(KeyCode.W))
+    }
+    void clearFunc()
+    {
+        for(int i = 0;i < enemyList.Count; i++)
         {
-            for (int i = 0; i < 100; i++)
-            {
-                Instantiate(prefab);
-            }
+            Destroy(enemyList[i]);
         }
-        for (int i = 0; i < enemyList.Count; i++)
-        {
-            enemyList[i].gameObject.tag = "isTagged";
-        }
+        enemyList.Clear();
     }
 }
