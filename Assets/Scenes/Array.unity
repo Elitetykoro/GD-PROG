@@ -483,7 +483,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyList: []
-  prefab: {fileID: 6563785595201390532, guid: e28ed0c52061db14cbdb48c023bb405e, type: 3}
+  enemy: {fileID: 6563785595201390532, guid: e28ed0c52061db14cbdb48c023bb405e, type: 3}
 --- !u!1001 &1009687468609704668
 PrefabInstance:
   m_ObjectHideFlags: 0
