@@ -18,7 +18,7 @@ public class towerSpawner : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
 
-            Instantiate(Prefab, Camera.main.ScreenToWorldPoint(Input.mousePosition), Quaternion.identity);
+            Instantiate(Prefab,new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x+Random.Range(-50,50),transform.position.y-90, Camera.main.ScreenToWorldPoint(Input.mousePosition).z + Random.Range(-50, 50)), Quaternion.identity);
         }
     }
 }
