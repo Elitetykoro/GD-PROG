@@ -16,15 +16,11 @@ public class EnemySpawner : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Q)) clearFunc();
         if (Input.GetKeyDown(KeyCode.W)) enemySpawnFunc();
-        for (int i = 0; i < GameObject.FindGameObjectsWithTag("enemy").Length; i++)
-        {
-            enemyList.Add(GameObject.FindGameObjectsWithTag("enemy")[i]);
-            GameObject.FindGameObjectsWithTag("enemy")[i].gameObject.tag = "isTagged";
-        }
         time += Time.deltaTime;
         if (time > 3)
         {
-            Instantiate(enemy, transform.position, Quaternion.identity);
+            GameObject cube = Instantiate(enemy, transform.position, Quaternion.identity);
+            enemyList.Add(cube);
             time = 0;
         }
     }
@@ -32,7 +28,8 @@ public class EnemySpawner : MonoBehaviour
     {
         for (int i = 0;i < 100; i++)
         {
-            Instantiate(enemy,transform.position,Quaternion.identity);
+            GameObject cube = Instantiate(enemy,transform.position,Quaternion.identity);
+            enemyList.Add(cube);
         }
     }
     void clearFunc()
